@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="">
   <head>
@@ -27,13 +26,25 @@
   <body class="js-enabled"><script id="__bs_script__">//<![CDATA[
     document.write("<script async src='browser-sync/browser-sync-client.js?v=2.18.12'><\/script>".replace("HOST", location.hostname));
 //]]></script>
-<header role="banner" id="global-header">
+<header role="banner" id="global-header" class="with-proposition">
   <div class="header-wrapper">
     <div class="header-global">
       <div class="header-logo">
         <a href="https://www.ros.gov.uk/" title="Go to the  homepage" id="logo" class="content">
           <img src="images/ros-logo-white.svg" height="40" alt="">
         </a>
+      </div>
+    </div>
+    <div class="header-proposition">
+      <div class="content">
+        <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+        <nav id="proposition-menu">
+          <a href="/securities" id="proposition-name">Securities</a>
+          <ul id="proposition-links">
+            <!--<li><a href="/sign-out" class="active">Navigation item #1</a></li>-->
+            <li><a href="/sign-out">Sign out</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
@@ -72,9 +83,9 @@
 		
 		<div class="column-third">
 			<aside class="govuk-related-items" role="complementary">
-	<h2 class="heading-medium" id="subsection-title">Other services</h2>
+	<h2 class="heading-medium" id="subsection-title">Our services</h2>
 	<nav role="navigation" aria-labelledby="subsection-title">
-		<ul class="font-xsmall">
+		<ul class="font-xsmall" id="our-services">
 			<li>
 				<a href="/sign-in">Sign in</a>
 			</li>
@@ -83,6 +94,9 @@
 			</li>
 			<li>
 				<a href="/discharges">Discharges</a>
+			</li>
+			<li>
+				<a href="/dispositions">Dispositions</a>
 			</li>
 		</ul>
 	</nav>
