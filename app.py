@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 app = Flask("python", static_folder='static', static_url_path='')
 
 
-@app.route('/')
+@app.route('/securities')
 @check.authorized
 def default():
     return render_template('index.html')
