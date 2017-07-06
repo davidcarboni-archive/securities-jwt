@@ -18,7 +18,6 @@ COPY .pydistutils.cfg /root/
 RUN pip3 install -r requirements.txt
 
 COPY src src
-COPY static static
 COPY templates templates
 COPY app.py .
 COPY requirements.txt .
