@@ -1,6 +1,8 @@
-import os
 import logging
-from flask import Flask, request, render_template, jsonify
+
+import os
+from flask import Flask, render_template
+
 from src import check
 
 # Logging
@@ -13,7 +15,6 @@ log = logging.getLogger(__name__)
 # App
 
 app = Flask("python", static_folder='static', static_url_path='')
-
 
 app.before_request(check.authorized)
 
