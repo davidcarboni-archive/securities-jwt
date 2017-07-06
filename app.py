@@ -3,7 +3,6 @@ import logging
 from flask import Flask, request, render_template, jsonify
 from src import check
 
-
 # Logging
 
 debug = bool(os.getenv("FLASK_DEBUG"))
@@ -11,14 +10,15 @@ logging_level = logging.DEBUG if debug else logging.WARNING
 logging.basicConfig(level=logging_level)
 log = logging.getLogger(__name__)
 
-
 # App
 
 app = Flask("python", static_folder='static', static_url_path='')
 
 
+app.before_request(check.authorized)
+
+
 @app.route('/securities')
-@check.authorized
 def default():
     return render_template('index.html')
 
