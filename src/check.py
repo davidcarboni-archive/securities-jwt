@@ -20,7 +20,7 @@ def authorized():
     log.debug("Token is " + str(token))
     if not Token.verify(token, Keys.list_public_keys()):
         log.info("Not authenticated")
-        log.info("Cookie is: " + request.cookies)
+        log.info("Cookie is: " + str(request.cookies))
         log.info("Setting cookie for domain: " + COOKIE_DOMAIN)
         response = redirect(SIGN_IN_URL)
         response.set_cookie("service", "securities", domain=COOKIE_DOMAIN)
