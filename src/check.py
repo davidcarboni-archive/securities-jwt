@@ -19,7 +19,7 @@ def authorized():
     log.debug("Token is " + str(token))
     if not Token.verify(token, Keys.list_public_keys()):
         response = redirect(SIGN_IN_URL)
-        response.set_cookie("service", "securities")
+        response.set_cookie("service", "securities", path='herokuapp.com')
         return response
 
 
