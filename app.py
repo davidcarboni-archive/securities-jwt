@@ -22,7 +22,7 @@ app.before_request(check.authorized)
 @app.route('/')
 def default():
     log.info("Helper redirect to /securities")
-    return redirect("sign-in")
+    return redirect("/securities")
 
 
 @app.route('/securities')
