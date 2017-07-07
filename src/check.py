@@ -24,7 +24,7 @@ def authorized():
         log.info("Setting cookie for domain: " + COOKIE_DOMAIN)
         response = redirect(SIGN_IN_URL)
         response.set_cookie("service", "securities", domain=COOKIE_DOMAIN)
-        #return response
+        return response
 
 
 def _get_header_token():
