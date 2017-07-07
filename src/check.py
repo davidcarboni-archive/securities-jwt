@@ -10,7 +10,7 @@ log = logging.getLogger(__name__)
 
 SIGN_IN_URL = os.getenv("SIGN_IN_URL", "/sign-in")
 TOKEN_URL = os.getenv("TOKEN_URL", "http://auth:5000/token")
-COOKIE_PATH = os.getenv('COOKIE_PATH', '')
+COOKIE_DOMAIN = os.getenv('COOKIE_DOMAIN', None)
 log.info("Sign in URL is " + SIGN_IN_URL)
 
 
@@ -20,7 +20,7 @@ def authorized():
     log.debug("Token is " + str(token))
     if not Token.verify(token, Keys.list_public_keys()):
         response = redirect(SIGN_IN_URL)
-        response.set_cookie("service", "securities", path=COOKIE_PATH)
+        response.set_cookie("service", "securities", domain=COOKIE_DOMAIN)
         #return response
 
 
