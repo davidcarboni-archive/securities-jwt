@@ -1,7 +1,7 @@
 import logging
 
 import os
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template
 
 from src import check
 
@@ -19,8 +19,14 @@ app = Flask("python", static_folder='static', static_url_path='')
 app.before_request(check.authorized)
 
 
-@app.route('/securities')
+@app.route('/')
 def default():
+    log.info("Helper redirect to /securities")
+    return redirect("sign-in")
+
+
+@app.route('/securities')
+def home():
     return render_template('index.html')
 
 
