@@ -3,6 +3,7 @@ import logging
 import os
 import requests
 from flask import request, redirect
+from .b3 import collect_request_headers
 
 from src import Keys, Token
 
@@ -14,7 +15,16 @@ COOKIE_DOMAIN = os.getenv('COOKIE_DOMAIN', None)
 log.info("Sign in URL is " + SIGN_IN_URL)
 
 
-def authorized():
+def before_request():
+
+    # Get B3 trace information
+    collect_request_headers()
+
+    # Ensure the user is authenticated
+    return _authorize()
+
+
+def _authorize():
     # Preference order is header, cookie, session ID
     token = _get_header_token() or _get_cookie_token()
     log.debug("Token is " + str(token))
