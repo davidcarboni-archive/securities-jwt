@@ -1,22 +1,30 @@
 import logging
-
+import logging_standard
 import os
-from flask import Flask, redirect, render_template
 
-from src import check
+from flask import Flask, request, redirect, render_template
 
-# Logging
-
-debug = bool(os.getenv("FLASK_DEBUG"))
-logging_level = logging.DEBUG if debug else logging.WARNING
-logging.basicConfig(level=logging_level)
-log = logging.getLogger(__name__)
+import b3
+from auth import check
 
 # App
 
 app = Flask("python", static_folder='static', static_url_path='')
 
-app.before_request(check.authorized)
+# Logging
+
+debug = bool(os.getenv("FLASK_DEBUG"))
+level = logging.DEBUG if debug else logging.WARNING
+logging_standard.init(app, level=level)
+log = logging.getLogger(__name__)
+
+
+@app.before_request
+def before_request():
+    b3.start_span()
+    check.authenticated()
+
+app.after_request(b3.end_span)
 
 
 @app.route('/')
@@ -27,14 +35,21 @@ def default():
 
 @app.route('/securities')
 def home():
+    log.info("securities home page.")
     return render_template('index.html')
 
 
 if __name__ == "__main__":
+
+    # Port
+    port = os.getenv("PORT", "5000")
+    log.info("PORT is " + str(port))
     log.info("FLASK_DEBUG is " + str(debug))
+
+    # Go!
     app.run(
         host="0.0.0.0",
-        port=int(os.getenv("PORT", "5000")),
+        port=int(port),
         debug=debug,
         threaded=True
     )
