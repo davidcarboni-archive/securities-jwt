@@ -1,5 +1,5 @@
 import logging
-import logging_standard
+import sleuth
 import os
 
 from flask import Flask, request, redirect, render_template
