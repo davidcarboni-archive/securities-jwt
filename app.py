@@ -21,7 +21,7 @@ log = logging.getLogger(__name__)
 @app.before_request
 def before_request():
     b3.start_span()
-    check.authenticated()
+    # check.authenticated()
 
 app.after_request(b3.end_span)
 
