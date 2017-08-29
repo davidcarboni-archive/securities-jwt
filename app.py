@@ -2,7 +2,7 @@ import logging
 import sleuth
 import os
 
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, jsonify
 
 import b3
 from auth import check
@@ -37,6 +37,12 @@ def default():
 def home():
     log.info("securities home page.")
     return render_template('index.html')
+
+
+@app.route('/cookie')
+def home():
+    log.info("Dumping cookie: " + request.cookies)
+    return jsonify(request.cookies)
 
 
 if __name__ == "__main__":
