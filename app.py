@@ -39,7 +39,7 @@ def home():
 
 
 @app.route('/cookie')
-def home():
+def cookie():
     log.info("Dumping cookie: " + request.cookies)
     return jsonify(request.cookies)
 
