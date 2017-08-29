@@ -1,10 +1,10 @@
 import logging
+import b3
 import sleuth
 import os
 
 from flask import Flask, request, redirect, render_template, jsonify
 
-import b3
 from auth import check
 
 # App
@@ -15,7 +15,6 @@ app = Flask("python", static_folder='static', static_url_path='')
 
 debug = bool(os.getenv("FLASK_DEBUG"))
 level = logging.DEBUG if debug else logging.WARNING
-logging_standard.init(app, level=level)
 log = logging.getLogger(__name__)
 
 
