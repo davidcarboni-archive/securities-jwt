@@ -22,7 +22,7 @@ def authorized():
     log.debug("JWT is " + str(token))
     if not token:
         return _unauthorised()
-    if not token.verify(token, Keys.list_public_keys()):
+    if not Token.verify(token, Keys.list_public_keys()):
         return _unauthorised()
     # Continue with request processing
 
