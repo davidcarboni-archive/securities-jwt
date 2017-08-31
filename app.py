@@ -47,7 +47,8 @@ def default():
 def home():
     log.info("securities home page.")
     return render_template('index.html',
-                           signing_url="/sign-in",
+                           sign_in_url=service_url('sign-in'),
+                           sign_out_url=service_url('sign-out'),
                            discharges_url=service_url('discharges'),
                            securities_url=service_url('securities'),
                            dispositions_url=service_url('dispositions'),
@@ -67,7 +68,9 @@ def unauthorised():
 
 def service_url(service):
     if service == 'sign-in':
-        return os.getenv("SIGNIN_URL", "/sign-in")
+        return os.getenv("SIGN_IN_URL", "/sign-in")
+    elif service == 'sign-out':
+        return os.getenv("SIGN_OUT_URL", "/sign-out")
     elif service == 'discharges':
         return os.getenv("DISCHARGES_URL", "/discharges")
     elif service == 'securities':
