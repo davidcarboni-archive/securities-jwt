@@ -16,24 +16,14 @@ COOKIE_DOMAIN = os.getenv('COOKIE_DOMAIN', None)
 
 # Logging
 
-logging_level = logging.DEBUG if debug else logging.WARNING
-logging.getLogger().setLevel(logging_level)
+logging.getLogger().setLevel(logging.DEBUG if debug else logging.WARNING)
 log = logging.getLogger(__name__)
 
 # App
 
 app = Flask("python", static_folder='static', static_url_path='')
-
-# Logging
-
-level = logging.DEBUG if debug else logging.WARNING
-log = logging.getLogger(__name__)
-
-@app.before_request
-def before_request():
-    b3.start_span()
-    return check.authorized()
-
+app.before_request(b3.start_span)
+app.before_request(check.authorized)
 app.after_request(b3.end_span)
 
 
