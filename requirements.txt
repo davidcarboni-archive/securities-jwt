@@ -1,7 +1,7 @@
 flask==0.12.2
 pyjwt==1.5.2
 cryptography==2.7
-requests==2.18.1
+requests==2.22.0
 Flask-B3
 Flask-Sleuth
 gunicorn
